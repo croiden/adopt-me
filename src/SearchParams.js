@@ -2,6 +2,7 @@ import * as React from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 
 import useDropdown from "./useDropdown";
+import Results from "./Results";
 
 const SearchParams = () => {
     const [location, setLocation] = React.useState("Seattle, WA");
@@ -33,7 +34,12 @@ const SearchParams = () => {
 
     return (
         <div className="search-params">
-            <form>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    requestPets();
+                }}
+            >
                 <label htmlFor="location">
                     Location
                     <input
@@ -48,6 +54,7 @@ const SearchParams = () => {
                 <BreedDropdown />
                 <button>{"Submit"}</button>
             </form>
+            <Results pets={pets} />
         </div>
     );
 };
