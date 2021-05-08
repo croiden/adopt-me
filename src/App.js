@@ -6,18 +6,24 @@ import Pet from "./Pet.js";
 import SearchParams from "./SearchParams";
 import Details from "./Details";
 
+import ThemeContext from "./ThemeContext";
+
 const App = () => {
+    const themeHook = React.useState("darkblue");
+
     return (
         <React.StrictMode>
-            <div>
-                <header>
-                    <Link to="/">{"Adopt Me!"}</Link>
-                </header>
-                <Router>
-                    <SearchParams path="/" />
-                    <Details path="/details/:id" />
-                </Router>
-            </div>
+            <ThemeContext.Provider value={themeHook}>
+                <div>
+                    <header>
+                        <Link to="/">{"Adopt Me!"}</Link>
+                    </header>
+                    <Router>
+                        <SearchParams path="/" />
+                        <Details path="/details/:id" />
+                    </Router>
+                </div>
+            </ThemeContext.Provider>
         </React.StrictMode>
     );
 };
